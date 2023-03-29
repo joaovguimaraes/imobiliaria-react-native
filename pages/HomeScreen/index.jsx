@@ -1,42 +1,46 @@
-import React from 'react'
-import { ScrollView, View, StyleSheet, Pressable, Text } from 'react-native'
-import Card from '../../components/Card'
+import React, { useEffect, useState } from 'react';
+import { ScrollView, View, StyleSheet, Pressable, Text } from 'react-native';
+import Card from '../../components/Card';
+import { useImobiliariaContext } from '../../contexts/imobiliariaContext';
 
 const HomeScreen = ({ navigation }) => {
-  let placeholder = [0,0,0,0,0,0,0,0,0,0,0,0,]
+  const imobiliaria = useImobiliariaContext();
+
   return (
     <View style={styles.container}>
-
       <ScrollView style={styles.cardList}>
-        {placeholder.map((item, index)=>{
-          return(
-            <Card 
-              address={'Servidão João Magalhães, 86'}
-              type={'Casa'}
-              price={2000}
-              rooms={3}
-              bathrooms={6}
+        {imobiliaria.imoveis.map((item, index) => {
+          return (
+            <Card
+              key={index}
+              address={item.address}
+              type={item.type}
+              price={item.price}
+              rooms={item.rooms}
+              bathrooms={item.bathrooms}
             />
-          )
+          );
         })}
-        
       </ScrollView>
 
-      <Pressable style={styles.button} onPress={() => navigation.navigate('Register')}>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate('Register')}
+      >
         <Text style={styles.text}>Go to register</Text>
       </Pressable>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  cardList:{
-    flex:1,
+  cardList: {
+    flex: 1,
     paddingLeft: 16,
-    paddingRight: 16
+    paddingRight: 16,
   },
   button: {
     alignItems: 'center',
@@ -54,6 +58,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: 'white',
   },
-})
+});
 
-export default HomeScreen
+export default HomeScreen;
