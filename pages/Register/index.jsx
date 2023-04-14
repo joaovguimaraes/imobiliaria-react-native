@@ -2,19 +2,20 @@ import React from 'react';
 import { Pressable, Text, TextInput } from 'react-native';
 import { View, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { useImobiliariaContext } from '../../contexts/imobiliariaContext';
 
 const Register = ({ navigation }) => {
   const imobiliaria = useImobiliariaContext();
 
   const [data, setData] = React.useState({
     address: '',
-    type: '',
-    price: null,
-    condominiumPrice: null,
-    rooms: null,
-    bathrooms: null,
-    image: '',
-    occupied: '',
+    type: 'house',
+    price: 0,
+    condominiumPrice: 0,
+    rooms: 0,
+    bathrooms: 0,
+    image: 'https://th.bing.com/th/id/OIP.ANbX-75zI_YlGZjuCrF7BQHaFj?pid=ImgDet&rs=1',
+    occupied: 0,
   });
 
   const saveImovel = () => {
@@ -84,8 +85,8 @@ const Register = ({ navigation }) => {
           setData({ ...data, occupied: itemValue })
         }
       >
-        <Picker.Item style={styles.option} label="yes" value={true} />
-        <Picker.Item label="no" value={false} />
+        <Picker.Item style={styles.option} label="yes" value={1} />
+        <Picker.Item label="no" value={0} />
       </Picker>
 
       <Pressable onPress={saveImovel}>

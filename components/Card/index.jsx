@@ -2,8 +2,10 @@ import React from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 
 const Card = (props) => {
+
   return (
     <View style={styles.container}>
+      {props.occupied ? <Text style={styles.priceTag}>Ocupada</Text> : <></>}
       <Image
         style={styles.banner}
         source={{
@@ -30,7 +32,7 @@ const Card = (props) => {
           <Text style={styles.buttonFont}>Excluir</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity disabled={props.occupied} style={styles.button} onPress={props.navigation}>
           <Text style={styles.buttonFont}>Alugar</Text>
         </TouchableOpacity>
       </View>

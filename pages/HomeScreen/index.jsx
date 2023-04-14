@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ScrollView, View, StyleSheet, Pressable, Text } from 'react-native';
 import Card from '../../components/Card';
 import { useImobiliariaContext } from '../../contexts/imobiliariaContext';
@@ -12,12 +12,14 @@ const HomeScreen = ({ navigation }) => {
         {imobiliaria.imoveis.map((item, index) => {
           return (
             <Card
+              navigation={()=>{navigation.navigate('RegisterUser', {itemId: item.id})}}
               key={index}
               address={item.address}
               type={item.type}
               price={item.price}
               rooms={item.rooms}
               bathrooms={item.bathrooms}
+              occupied={item.occupied}
             />
           );
         })}
