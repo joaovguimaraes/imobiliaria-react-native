@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import data from '../data';
+import { findAll } from '../services/casa.service';
 
 const ImobiliariaContext = createContext();
 
@@ -11,13 +11,10 @@ export function ImobiliariaProvider(props) {
   const [imoveis, setImoveis] = useState([0]);
 
   useEffect(() => {
-    setImoveis(data);
+    findAll().then((result) => {
+      setImoveis(result.rows);
+    });
   }, []);
-
-  const addImovel = (imovel) => {
-    setImoveis([...imoveis, imovel]);
-    return imoveis[arry.length - 1];
-  };
 
   const getImoveis = () => {
     return imoveis;
