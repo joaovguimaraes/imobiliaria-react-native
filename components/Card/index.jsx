@@ -2,10 +2,10 @@ import React from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 
 const Card = (props) => {
-
   return (
     <View style={styles.container}>
-      {props.occupied ? <Text style={styles.priceTag}>Ocupada</Text> : <></>}
+      {props.occupied ? <Text style={styles.full}>Ocupada</Text> : <></>}
+
       <Image
         style={styles.banner}
         source={{
@@ -15,7 +15,9 @@ const Card = (props) => {
       <Text style={styles.address}>{props.address}</Text>
       <View style={styles.priceContainer}>
         <Text style={styles.priceTag}>R$ {props.price}</Text>
-        <Text style={styles.type}>{props.type}</Text>
+        <Text style={styles.type}>
+          {props.type == 1 ? 'Apartamento' : 'Casa'}
+        </Text>
       </View>
 
       <View style={styles.roomsContainer}>
@@ -32,7 +34,11 @@ const Card = (props) => {
           <Text style={styles.buttonFont}>Excluir</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity disabled={props.occupied} style={styles.button} onPress={props.navigation}>
+        <TouchableOpacity
+          disabled={props.occupied}
+          style={styles.button}
+          onPress={props.navigation}
+        >
           <Text style={styles.buttonFont}>Alugar</Text>
         </TouchableOpacity>
       </View>
@@ -46,18 +52,15 @@ const styles = StyleSheet.create({
     minHeight: 100,
     width: '100%',
     backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.34,
-    shadowRadius: 6.27,
-    elevation: 10,
+    borderColor: '#0090FF',
+    borderWidth: 2,
     padding: 8,
   },
   banner: {
     height: undefined,
+    backgroundColor: '#fff',
+    borderColor: '#0090FF',
+    borderWidth: 2,
     aspectRatio: 1,
     width: '100%',
   },
@@ -74,6 +77,12 @@ const styles = StyleSheet.create({
     color: '#2196F3',
     fontSize: 22,
     fontWeight: '700',
+  },
+  full: {
+    color: 'black',
+    fontSize: 22,
+    fontWeight: '700',
+    paddingBottom: 12,
   },
   type: {
     fontSize: 18,

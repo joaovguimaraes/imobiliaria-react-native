@@ -33,7 +33,7 @@ const RegisterUser = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container} onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-        <Text style={styles.header}>Register</Text>
+        <Text style={styles.header}>Edit Profile</Text>
         <Text>{errorLabel}</Text>
         <TextInput
           style={styles.input}
